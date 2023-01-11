@@ -1,0 +1,32 @@
+.MonthContainer{
+    position: relative;
+    display: inline-block;
+    padding: 0 30px;
+    max-width: 200px;
+    width: 100%;
+    text-align: center;
+}
+.MonthTitle{
+    font-weight: 900;
+    font-size: 25px;
+    line-height: 29px;
+    letter-spacing: 0.05em;
+    background: linear-gradient(91.21deg, #E9E8E8 0.41%, #ADACAC 50.33%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+.MonthButton{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: inherit;
+    cursor: pointer;
+    border: none;
+}
+.MonthPrev{
+    left: 0;
+}
+.MonthNext{
+    right: 0;
+}

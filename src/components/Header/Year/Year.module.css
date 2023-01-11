@@ -1,0 +1,35 @@
+.Year{
+    position: relative;
+    display: inline-block;
+    padding: 0 30px;
+    margin-bottom: 10px;
+    max-width: 200px;
+    width: 100%;
+    text-align: center;
+}
+.YearTitle{
+    font-weight: 900;
+    font-size: 40px;
+    line-height: 47px;
+    letter-spacing: 0.05em;
+    background: linear-gradient(98.7deg, #E9E8E8 10.14%, #ADACAC 97.18%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+}
+.YearButton{
+    position: absolute;
+    cursor: pointer;
+    background-color: inherit;
+    border: none;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 20px;
+}
+.YearPrev{
+    left: 0;
+}
+.YearNext{
+    right: 0;
+}

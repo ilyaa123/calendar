@@ -1,0 +1,16 @@
+.Week{
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    margin-bottom: 5px;
+}
+.WeekItem{
+    font-weight: 900;
+    font-size: 18px;
+    line-height: 21px;
+    letter-spacing: 0.05em;
+    color: rgba(130, 130, 130, 0.42);
+}
+.WeekItemEnd{
+    color: rgba(255, 255, 255, .6)
+}

@@ -1,0 +1,14 @@
+.EventItem{
+    padding: 5px 10px;
+    font-size: 18px;
+    border-radius: 5px;
+    background-color: aliceblue;
+    color: #1e1c1c;
+    max-width: calc((100vw - 100px) / 7 - 30px);
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    white-space: pre;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

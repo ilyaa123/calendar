@@ -1,0 +1,50 @@
+.Calendar{
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    background-color: #000000;
+    grid-gap: 2px;
+    padding: 2px;
+}
+.CalendarItem{
+    height: 100px;
+    background-color: #1e1c1c;
+    padding: 5px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+.CalendarItemPrev{
+    background-color: #2E2C2C;
+    cursor: default;
+}
+.CalendarItemDay{
+    font-weight: 900;
+    font-size: 25px;
+    line-height: 29px;
+    letter-spacing: 0.05em;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.75) 0%, rgba(171, 171, 171, 0.75) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+.CalendarItemPrev > .CalendarItemDay{
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.50) 0%, rgba(171, 171, 171, 0.50) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+.CalendarItemActive{
+    background-color: aliceblue;
+    
+}
+.CalendarItemActive > .CalendarItemDay{
+    color: #1e1c1c;
+    background: none;
+    background-color: aliceblue;
+    -webkit-background-clip: initial;
+    -webkit-text-fill-color: initial;
+    background-clip: initial;
+}
