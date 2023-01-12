@@ -1,5 +1,6 @@
 import classNames from "classnames";
-import React, { Dispatch, FC, SetStateAction, useRef } from "react";
+import React, { Dispatch, FC, SetStateAction, useContext, useRef } from "react";
+import { ModalContext, setModalActive } from "../../../context/modalContext";
 import { useAppDispatch } from "../../../redux/hooks";
 import { addEvent } from "../../../redux/slices/eventsSlice";
 
@@ -17,7 +18,9 @@ interface IModal{
     calendarItem: ICalendarItem | undefined
 }
 
-export const Modal:FC<IModal> = ({modalActive, setModalActive, calendarItem}) => {
+export const Modal:FC = () => {
+
+    const { state:{ modalActive, calendarItem }, dispatchModal } = useContext(ModalContext)
 
     const modalOverlay = useRef<HTMLDivElement>(null);
     const textInp = useRef<HTMLInputElement>(null);
@@ -28,7 +31,10 @@ export const Modal:FC<IModal> = ({modalActive, setModalActive, calendarItem}) =>
 
     const handleOnClick = (event: React.MouseEvent<HTMLDivElement>) => {
         if (event.target === modalOverlay.current){
-            setModalActive(prev => !prev)
+            dispatchModal({
+                type: setModalActive,
+                payload: false
+            })
         }
     }
 
@@ -36,12 +42,15 @@ export const Modal:FC<IModal> = ({modalActive, setModalActive, calendarItem}) =>
         event.preventDefault();
         if (calendarItem){
             
-            const text = textInp.current?.value;
-            const time = timeInp.current?.value;
+            const text = textInp.current!.value;
+            const time = timeInp.current!.value;
             dispatch(addEvent({...calendarItem, time, text}));
 
             modalForm.current?.reset();
-            setModalActive(prev => !prev);
+            dispatchModal({
+                type: setModalActive,
+                payload: false
+            })
         }
     }
 

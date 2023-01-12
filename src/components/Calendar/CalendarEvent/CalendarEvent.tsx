@@ -1,5 +1,5 @@
-import React, { Dispatch, FC, SetStateAction } from "react";
-import { ICalendarEventItem } from "../../../hooks/useModalEvent";
+import { FC, useContext } from "react";
+import { ModalContext, setCalendarEventItem, setModalEventActive } from "../../../context/modalContext";
 import { Events } from "../../../redux/slices/eventsSlice";
 
 import style from './CalendarEvent.module.css';
@@ -9,11 +9,11 @@ interface ICalendarEvent{
     year: string;
     month: string;
     day: string;
-    setModalEventActive: Dispatch<SetStateAction<boolean>>;
-    setCalendarEventItem: React.Dispatch<React.SetStateAction<ICalendarEventItem>>;
 }
 
-export const CalendarEvent:FC<ICalendarEvent> = ({events, year, month, day, setModalEventActive, setCalendarEventItem}) => {
+export const CalendarEvent:FC<ICalendarEvent> = ({events, year, month, day}) => {
+
+    const { dispatchModal } = useContext(ModalContext)
 
     const event = events.filter((item) => {
         if (
@@ -28,11 +28,17 @@ export const CalendarEvent:FC<ICalendarEvent> = ({events, year, month, day, setM
     })
 
     const handleOnClick = () => {
-        setModalEventActive(prev => !prev);
-        setCalendarEventItem({
-            year: year,
-            month: month,
-            day: day
+        dispatchModal({
+            type: setModalEventActive,
+            payload: true 
+        })
+        dispatchModal({
+            type: setCalendarEventItem,
+            payload: {
+                year: year,
+                month: month,
+                day: day
+            }
         })
     }
 

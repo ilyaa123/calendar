@@ -1,21 +1,16 @@
 import classNames from "classnames";
-import React, { Dispatch, FC, SetStateAction, useRef } from "react";
-import { ICalendarEventItem } from "../../../hooks/useModalEvent";
+import React, { FC, useContext, useRef } from "react";
+import { ModalContext, setCalendarEventItem, setModalEventActive } from "../../../context/modalContext";
 import { useAppSelector } from "../../../redux/hooks";
 
 import style from './ModalEvent.module.css';
 
-interface IModalEvent{
-    modalEventActive: boolean;
-    setModalEventActive: Dispatch<SetStateAction<boolean>>;
-    calendarEventItem: ICalendarEventItem;
-    setCalendarEventItem: React.Dispatch<React.SetStateAction<ICalendarEventItem>>;
-}
-
-export const ModalEvent:FC<IModalEvent> = ({modalEventActive, setModalEventActive, calendarEventItem, setCalendarEventItem}) => {
+export const ModalEvent:FC = () => {
     const modalEventRef = useRef(null);
 
     const { events } = useAppSelector(store => store.events);
+
+    const { state: {modalEventActive, calendarEventItem}, dispatchModal } = useContext(ModalContext)
 
     const event = events.filter((item) => {
         if (
@@ -31,9 +26,15 @@ export const ModalEvent:FC<IModalEvent> = ({modalEventActive, setModalEventActiv
 
     const handleOnClick = (event: React.MouseEvent<HTMLDivElement>) => {
         if (event.target === modalEventRef.current){
-            setModalEventActive(false);
+            dispatchModal({
+                type: setModalEventActive,
+                payload: false
+            })
             setTimeout(() => {
-                setCalendarEventItem({});
+                dispatchModal({
+                    type: setCalendarEventItem,
+                    payload: {}
+                })
             }, 360)
         }
     }

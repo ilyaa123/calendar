@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface Events{
-    day: string;
-    month: string;
-    year: string;
-    time: string | undefined;
-    text: string | undefined;
+    day?: string;
+    month?: string;
+    year?: string;
+    time?: string;
+    text?: string;
 }
 
 interface IEvent extends Object{
@@ -13,7 +13,7 @@ interface IEvent extends Object{
 }
 
 const initialState:IEvent = {
-    events: []
+    events: Object(JSON.parse(localStorage.getItem('event')!))
 }
 
 export const eventsSlice = createSlice({
@@ -21,7 +21,9 @@ export const eventsSlice = createSlice({
     initialState,
     reducers: {
         addEvent: (state, action: PayloadAction<Events>) => {
-            state.events = [...state.events, action.payload]
+            state.events = [...state.events, action.payload];
+            console.log(state.events)
+            localStorage.setItem('event', JSON.stringify(state.events));
         }
     }
 })
